@@ -1,0 +1,11 @@
+package com.kirg.referencelinksystem.enums.userEnums;
+
+public enum UserSituation {
+    MAM_WOLNOSC_FINANSOWA,
+    PRACUJE_I_ZARABIAM_DOBRZE,
+    PRACUJE_I_MI_WYSTARCZA,
+    NIE_PRACUJE_ZYJE_Z_OSZCZEDNOSCI,
+    NIE_PRACUJE_JESTEM_POD_OPIEKA,
+    NIE_PRACUJE_I_NIE_MAM_ZA_CO_ZYC,
+    UTRZYMUJE_SIE_Z_POMOCY
+}

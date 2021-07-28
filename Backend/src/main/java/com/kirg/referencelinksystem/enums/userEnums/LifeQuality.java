@@ -1,0 +1,11 @@
+package com.kirg.referencelinksystem.enums.userEnums;
+
+public enum LifeQuality {
+    MAM_WSZYSTKIEGO_POD_DOSTATKIEM,
+    MAM_WSZYSTKIEGO_CZEGO_POTRZEBUJE,
+    JEST_MI_W_ZYCIU_DOBRZE,
+    CZEGOS_MI_BRAKUJE,
+    ZYJE_W_NIEDOSTATKU,
+    JEST_MI_BARDZO_TRUDNO,
+    NIE_WIDZE_WYJSCIA_Z_SYTUACJI
+}
