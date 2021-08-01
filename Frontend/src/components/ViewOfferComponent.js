@@ -25,17 +25,47 @@ class ViewOfferComponent extends Component {
                     <h3 className = "text-center"> Szczegóły usługi</h3>
                     <div className = "card-body">
                         <div className = "row">
-                            <label> Offer Name: </label>
+                            <label> Nazwa: </label>
                             <div> { this.state.offer.name }</div>
                         </div>
                         <div className = "row">
-                            <label> Offer Price: </label>
-                            <div> { this.state.offer.price }</div>
+                            <label> Cena: </label>
+                            <div> { this.state.offer.offerCost }</div>
                         </div>
                         <div className = "row">
-                            <label> Availability: </label>
-                            <div> { String(this.state.offer.available) }</div>
+                            <label> Czy pilne?: </label>
+                            <div> {this.state.offer.isUrgent }</div>
                         </div>
+                        <div className = "row">
+                            <label> OfferorGroup: </label>
+                            <div> { String(this.state.offer.offerorGroup) }</div>
+                        </div>
+                        <div className = "row">
+                            <label> Krótki opis: </label>
+                            <div> { String(this.state.offer.description) }</div>
+                        </div>
+                        <div className = "row">
+                            <label> Opcja: </label>
+                            <div> { String(this.state.offer.option) }</div>
+                        </div>
+                        <div className = "row">
+                            <label> Kategoria: </label>
+                            <div> { String(this.state.offer.category) }</div>
+                        </div>
+                        <div className = "row">
+                            <label> Obszar: </label>
+                            <div> { String(this.state.offer.area) }</div>
+                        </div>
+                        <div className = "row">
+                            <label> Dlaczego to robisz?: </label>
+                            <div> { String(this.state.offer.reason) }</div>
+                        </div>
+                        <div className = "row">
+                            <label> Płatność: </label>
+                            <div> { String(this.state.offer.payment) }</div>
+                        </div>
+
+
                     </div>
 
                 </div>

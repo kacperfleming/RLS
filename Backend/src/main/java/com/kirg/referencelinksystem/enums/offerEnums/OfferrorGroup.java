@@ -1,12 +1,12 @@
 package com.kirg.referencelinksystem.enums.offerEnums;
 
 public enum OfferrorGroup {
-PSYCHOLODZY_I_TERAPEUCI,
+    PSYCHOLODZY_I_TERAPEUCI,
     SPOLECZNOSC,
     WLASCICIELE_DOMOW,
     WLASCICIELE_MIESZKAN,
     NAJEMCY_DOMOW_I_MIESZKAN,
-    URZĘDY_I_INSTYTUCJE,
+    URZEDY_I_INSTYTUCJE,
     PRZEDSIEBIORCY,
     SENIORZY,
     MLODZIEZ,

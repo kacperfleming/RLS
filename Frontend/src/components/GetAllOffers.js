@@ -58,14 +58,7 @@ class GetAllOffers extends Component{
                             <th> Nazwa </th>
                             <th> Wycena</th>
                             <th> Pilne?</th>
-                            <th> Kategoria</th>
-                            <th> Grupa</th>
-                            <th> Numer</th>
                             <th> Opis</th>
-                            <th> Opcja </th>
-                            <th> Obszar</th>
-                            <th> Dlaczego?</th>
-                            <th> Płatność</th>
                             <th> Opcja </th>
                             <th> Działania </th>
                         </tr>
@@ -77,17 +70,24 @@ class GetAllOffers extends Component{
                                 offer =>
                                     <tr key={ offer.id }>
                                         <td>{ offer.name }</td>
-                                        <td>{ offer.price }</td>
+                                        <td>{ offer.offerCost }</td>
+                                        <td>{ offer.isUrgent }</td>
+                                        <td>{ offer.description }</td>
+                                        <td>{ offer.option }</td>
                                         <td>
-                                            <button onClick={()=> this.editOffer(offer.id)}
+                                            <button style={{marginLeft: "10px"}} onClick={()=> this.editOffer(offer.id)}
                                             className="btn btn-info">
-                                                Update
+                                                Edytuj
                                             </button>
+
                                             <button style={{marginLeft: "10px"}} onClick={ () =>
-                                                this.deleteOffer(offer.id)} className="btn btn-danger">Delete </button>
-                                            <button style={{marginLeft: "10px"}} onClick={ () =>
-                                                this.viewOffer(offer.id)} className="btn btn-info">View </button>
+                                                this.viewOffer(offer.id)} className="btn btn-info">Szczegóły oferty </button>
+
+
+                                            <button style={{marginLeft: "12px"}} onClick={ () =>
+                                                this.deleteOffer(offer.id)} className="btn btn-danger">Usuń </button>
                                         </td>
+
 
                                     </tr>
                             )

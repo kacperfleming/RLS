@@ -2,6 +2,8 @@ package com.kirg.referencelinksystem.entity;
 
 
 
+import com.kirg.referencelinksystem.enums.offerEnums.OfferPayment;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -28,6 +30,8 @@ public class OrderEntity {
 
     @OneToOne
     private UserWithHeart userWithHeart;
+
+    private OfferPayment offerPayment;
 
     @OneToMany
     private List<Offer> offers;
@@ -74,5 +78,13 @@ public class OrderEntity {
 
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
+    }
+
+    public OfferPayment getOfferPayment() {
+        return offerPayment;
+    }
+
+    public void setOfferPayment(OfferPayment offerPayment) {
+        this.offerPayment = offerPayment;
     }
 }
