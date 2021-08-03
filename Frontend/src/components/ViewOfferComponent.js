@@ -30,11 +30,11 @@ class ViewOfferComponent extends Component {
                         </div>
                         <div className = "row">
                             <label> Cena: </label>
-                            <div> { this.state.offer.offerCost }</div>
+                            <div> { String(this.state.offer.offerCost) }</div>
                         </div>
                         <div className = "row">
                             <label> Czy pilne?: </label>
-                            <div> {this.state.offer.isUrgent }</div>
+                            <div> {String(this.state.offer.isUrgent) }</div>
                         </div>
                         <div className = "row">
                             <label> OfferorGroup: </label>

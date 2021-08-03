@@ -18,6 +18,8 @@ public class Offer {
 
     private BigDecimal offerCost;
 
+    private boolean isUrgent;
+
     private OfferrorGroup offerrorGroup;
 
     private String offerDescription;
@@ -30,7 +32,7 @@ public class Offer {
 
     private OfferReason offerReason;
 
-    private boolean isUrgent;
+
 
     @OneToMany
     private List<Product> productList;
@@ -98,7 +100,7 @@ public class Offer {
     }
 
 
-    public boolean isUrgent() {
+    public boolean getIsUrgent() {
         return isUrgent;
     }
 

@@ -71,7 +71,7 @@ class GetAllOffers extends Component{
                                     <tr key={ offer.id }>
                                         <td>{ offer.name }</td>
                                         <td>{ offer.offerCost }</td>
-                                        <td>{ offer.isUrgent }</td>
+                                        <td>{ offer.isUrgent.toString() }</td>
                                         <td>{ offer.description }</td>
                                         <td>{ offer.option }</td>
                                         <td>

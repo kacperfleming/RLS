@@ -42,7 +42,7 @@ public class OfferController {
         beforeUpdate.setOfferrorGroup(offer.getOfferrorGroup());
         beforeUpdate.setOptionNeedOffer(offer.getOptionNeedOffer());
         beforeUpdate.setProductList(offer.getProductList());
-        beforeUpdate.setIsUrgent(offer.isUrgent());
+        beforeUpdate.setIsUrgent(offer.getIsUrgent());
         Offer afterUpdate = offerService.save(beforeUpdate);
         return ResponseEntity.ok(afterUpdate);
     }
