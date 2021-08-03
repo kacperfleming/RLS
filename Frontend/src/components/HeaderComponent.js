@@ -19,7 +19,8 @@ class HeaderComponent extends Component{
             <div>
                 <header>
                     <nav className="navbar navbar-expand-md navbar-dark badge-dark">
-                        <div className="navbar-brand">Reference Link System</div>
+                        <img src="/photo_2021-08-02_21-24-01.jpg" alt="alternatetext"
+                             width="500" height="200" class="center"/>
                     </nav>
                 </header>
 
