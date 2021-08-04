@@ -152,8 +152,30 @@ class CreateOfferComponent extends Component{
                                     </div>
                                     <div className = "form-group">
                                         <label> Grupa oferująca: </label>
-                                        <input placeholder="offerorGroup" name="offerorGroup" className="form-control"
-                                               value={this.state.offerrorGroup} onChange={this.changeOfferorGroupHandler}/>
+                                        <br/>
+                                        <select value={this.state.offerrorGroup} onChange={this.changeOfferorGroupHandler}>
+
+                                            <option value="0" >Psycholodzy i terapeuci</option>
+                                            <option value="1" >Społeczność</option>
+                                            <option value="2">Właściciele domów</option>
+                                            <option value="3">Właściciele mieszkań</option>
+                                            <option value="4">Najemncy domów i mieszkań</option>
+                                            <option value="5">Urzędy i instytucje</option>
+                                            <option value="6">Przedsiębiorcy</option>
+                                            <option value="7">Seniorzy</option>
+                                            <option value="8">Młodzież</option>
+                                            <option value="9">Rodzice</option>
+                                            <option value="10">Rolnicy</option>
+                                            <option value="11">Pracownicy</option>
+                                            <option value="12">Studenci</option>
+                                            <option value="13">Wykładowcy i naukowcy</option>
+                                            <option value="14">Rektorzy</option>
+                                            <option value="15">Dyrektorzy_szkół</option>
+                                            <option value="16">Organizacje_pozarządowe</option>
+                                            <option value="17">Osoby_bezrobotne</option>
+                                            <option value="18">Osoby_niepełnosprawne</option>
+                                            <option value="19">Inna_grupa</option>
+                                        </select>
                                     </div>
                                     <div className = "form-group">
                                         <label> Krótki opis usługi: </label>
