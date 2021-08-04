@@ -14,11 +14,10 @@ class CreateOfferComponent extends Component{
             isUrgent: ' ',
             offerrorGroup: ' ',
             description: '',
-            option: '',
-            category: '',
-            area: '',
-            reason: '',
-            payment: '',
+            optionNeedOffer: '',
+            offerCategory: '',
+            offerArea: '',
+            offerReason: ''
 
         }
         this.changeNameHandler = this.changeNameHandler.bind(this);
@@ -30,7 +29,6 @@ class CreateOfferComponent extends Component{
         this.changeOptionHandler = this.changeOptionHandler.bind(this);
         this.changeAreaHandler = this.changeAreaHandler.bind(this);
         this.changeReasonHandler = this.changeReasonHandler.bind(this);
-        this.changePaymentHandler = this.changePaymentHandler.bind(this);
     }
 
 
@@ -46,13 +44,12 @@ class CreateOfferComponent extends Component{
                     name: offer.name,
                     offerCost: offer.offerCost,
                     isUrgent: offer.isUrgent,
-                    offerorGroup: offer.offerorGroup,
+                    offerrorGroup: offer.offerrorGroup,
                     description: offer.description,
-                    option: offer.option,
-                    category: offer.category,
-                    area: offer.area,
-                    reason: offer.reason,
-                    payment: offer.payment,
+                    optionNeedOffer: offer.optionNeedOffer,
+                    offerCategory: offer.offerCategory,
+                    offerArea: offer.offerArea,
+                    offerReason: offer.offerReason,
                 });
             });
         }
@@ -63,13 +60,12 @@ class CreateOfferComponent extends Component{
             name: this.state.name,
             offerCost: this.state.offerCost,
             isUrgent: this.state.isUrgent,
-            offerorGroup: this.state.offerorGroup,
+            offerrorGroup: this.state.offerrorGroup,
             description: this.state.description,
-            option: this.state.option,
-            category: this.state.category,
-            area: this.state.area,
-            reason: this.state.reason,
-            payment: this.state.payment,
+            optionNeedOffer: this.state.optionNeedOffer,
+            offerCategory: this.state.offerCategory,
+            offerArea: this.state.offerArea,
+            offerReason: this.state.offerReason
 
         };
         console.log('offer => ' + JSON.stringify(offer));
@@ -98,25 +94,22 @@ class CreateOfferComponent extends Component{
         this.setState({isUrgent: event.target.value});
     }
     changeOfferorGroupHandler= (event) => {
-        this.setState({offerorGroup: event.target.value});
+        this.setState({offerrorGroup: event.target.value});
     }
     changeDescriptionHandler= (event) => {
         this.setState({description: event.target.value});
     }
     changeOptionHandler= (event) => {
-        this.setState({option: event.target.value});
+        this.setState({optionNeedOffer: event.target.value});
     }
     changeCategoryHandler= (event) => {
-        this.setState({category: event.target.value});
+        this.setState({offerCategory: event.target.value});
     }
     changeAreaHandler= (event) => {
-        this.setState({area: event.target.value});
+        this.setState({offerArea: event.target.value});
     }
     changeReasonHandler= (event) => {
-        this.setState({reason: event.target.value});
-    }
-    changePaymentHandler= (event) => {
-        this.setState({payment: event.target.value});
+        this.setState({offerReason: event.target.value});
     }
 
     cancel(){
@@ -160,7 +153,7 @@ class CreateOfferComponent extends Component{
                                     <div className = "form-group">
                                         <label> Grupa oferująca: </label>
                                         <input placeholder="offerorGroup" name="offerorGroup" className="form-control"
-                                               value={this.state.offerorGroup} onChange={this.changeOfferorGroupHandler}/>
+                                               value={this.state.offerrorGroup} onChange={this.changeOfferorGroupHandler}/>
                                     </div>
                                     <div className = "form-group">
                                         <label> Krótki opis usługi: </label>
@@ -169,29 +162,25 @@ class CreateOfferComponent extends Component{
                                     </div>
                                     <div className = "form-group">
                                         <label> Opcja: </label>
-                                        <input placeholder="option" name="option" className="form-control"
-                                               value={this.state.option} onChange={this.changeOptionHandler}/>
+                                        <input placeholder="option" name="optionNeedOffer" className="form-control"
+                                               value={this.state.optionNeedOffer} onChange={this.changeOptionHandler}/>
                                     </div>
                                     <div className = "form-group">
                                         <label> Kategoria: </label>
-                                        <input placeholder="category" name="category" className="form-control"
-                                               value={this.state.category} onChange={this.changeCategoryHandler}/>
+                                        <input placeholder="category" name="offerCategory" className="form-control"
+                                               value={this.state.offerCategory} onChange={this.changeCategoryHandler}/>
                                     </div>
                                     <div className = "form-group">
                                         <label> Obszar: </label>
-                                        <input placeholder="area" name="area" className="form-control"
-                                               value={this.state.area} onChange={this.changeAreaHandler}/>
+                                        <input placeholder="area" name="offerArea" className="form-control"
+                                               value={this.state.offerArea} onChange={this.changeAreaHandler}/>
                                     </div>
                                     <div className = "form-group">
                                     <label> Dlaczego to robisz?: </label>
-                                    <input placeholder="reason" name="reason" className="form-control"
-                                           value={this.state.reason} onChange={this.changeReasonHandler}/>
+                                    <input placeholder="reason" name="offerReason" className="form-control"
+                                           value={this.state.offerReason} onChange={this.changeReasonHandler}/>
                             </div>
-                                    <div className = "form-group">
-                                        <label> Płatność: </label>
-                                        <input placeholder="payment" name="payment" className="form-control"
-                                               value={this.state.payment} onChange={this.changePaymentHandler}/>
-                                    </div>
+
 
                                     <button className="btn btn-success" onClick={this.saveOrUpdateOffer}>Zapisz</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Anuluj</button>

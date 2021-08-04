@@ -73,7 +73,7 @@ class GetAllOffers extends Component{
                                         <td>{ offer.offerCost }</td>
                                         <td>{ offer.isUrgent.toString() }</td>
                                         <td>{ offer.description }</td>
-                                        <td>{ offer.option }</td>
+                                        <td>{ offer.optionNeedOffer }</td>
                                         <td>
                                             <button style={{marginLeft: "10px"}} onClick={()=> this.editOffer(offer.id)}
                                             className="btn btn-info">

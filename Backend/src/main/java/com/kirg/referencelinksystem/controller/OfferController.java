@@ -37,7 +37,7 @@ public class OfferController {
         beforeUpdate.setOfferArea(offer.getOfferArea());
         beforeUpdate.setOfferCategory(offer.getOfferCategory());
         beforeUpdate.setOfferCost(offer.getOfferCost());
-        beforeUpdate.setOfferDescription(offer.getOfferDescription());
+        beforeUpdate.setDescription(offer.getDescription());
         beforeUpdate.setOfferReason(offer.getOfferReason());
         beforeUpdate.setOfferrorGroup(offer.getOfferrorGroup());
         beforeUpdate.setOptionNeedOffer(offer.getOptionNeedOffer());

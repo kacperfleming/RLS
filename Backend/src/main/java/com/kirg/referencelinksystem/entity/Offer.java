@@ -22,7 +22,7 @@ public class Offer {
 
     private OfferrorGroup offerrorGroup;
 
-    private String offerDescription;
+    private String description;
 
     private OptionNeedOffer optionNeedOffer;
 
@@ -31,8 +31,6 @@ public class Offer {
     private OfferArea offerArea;
 
     private OfferReason offerReason;
-
-
 
     @OneToMany
     private List<Product> productList;
@@ -51,12 +49,12 @@ public class Offer {
         this.offerrorGroup = offerrorGroup;
     }
 
-    public String getOfferDescription() {
-        return offerDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOfferDescription(String offerDescription) {
-        this.offerDescription = offerDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public BigDecimal getOfferCost() {

@@ -2,24 +2,24 @@ package com.kirg.referencelinksystem.enums.offerEnums;
 
 public enum OfferArea {
 
-    SWIADOMOSC_ZYCIA,
-    NATURA_WOKOL_MNIE,
-    FIRMA_I_ORGANIZACJA,
-    USLUGI_I_WYKONASTWO,
-    RELACJE_Z_RODZINA,
-    RELACJE_ZE_ZNAJOMYMI,
-    SCIEZKA_ARTYSTY,
-    NARZEDZIA_I_SYSTEMY_PRACY,
-    KOMUNIKACJA_ONLINE,
-    KOMPUTER_I_TELEFON,
-    INTERNET_I_NARZEDZIA,
-    KOMUNIKACJA_MIEJSKA,
-    POSTRZEGANIE_INNYCH,
-    SZKOLA_I_ROZWOJ,
-    SWIADOMA_UPRAWA_ROSLIN,
-    ZWIERZETA_WOKOL_NAS,
-    SWIADOME_I_ZDROWE_ZYWIENIE,
-    DBALOSC_O_ZDROWIE,
-    PASJA_I_AKTYWNOSCI
+    Świadomość_życia,
+    Natura_wokól_mnie,
+    Firma_i_organizacja,
+    Usługi_i_wykonastwo,
+    Relacje_z_rodziną,
+    Relacje_ze_znajomymi,
+    Ścieżka_artysty,
+    Narzędzia_i_systemy_pracy,
+    Komunikacja_online,
+    Komputer_i_telefon,
+    Internet_i_narzedzią,
+    Komunikacja_miejska,
+    Postrzeganie_innych,
+    Szkoła_i_rozwój,
+    Świadoma_uprawa_roślin,
+    Zwierzęta_wokól_nas,
+    Świadome_i_zdrowe_żywienie,
+    Dbałość_o_zdrowie,
+    Pasja_i_aktywności
 
 }

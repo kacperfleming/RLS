@@ -38,7 +38,7 @@ class ViewOfferComponent extends Component {
                         </div>
                         <div className = "row">
                             <label> OfferorGroup: </label>
-                            <div> { String(this.state.offer.offerorGroup) }</div>
+                            <div> { String(this.state.offer.offerrorGroup) }</div>
                         </div>
                         <div className = "row">
                             <label> Krótki opis: </label>
@@ -46,24 +46,21 @@ class ViewOfferComponent extends Component {
                         </div>
                         <div className = "row">
                             <label> Opcja: </label>
-                            <div> { String(this.state.offer.option) }</div>
+                            <div> { String(this.state.offer.optionNeedOffer) }</div>
                         </div>
                         <div className = "row">
                             <label> Kategoria: </label>
-                            <div> { String(this.state.offer.category) }</div>
+                            <div> { String(this.state.offer.offerCategory) }</div>
                         </div>
                         <div className = "row">
                             <label> Obszar: </label>
-                            <div> { String(this.state.offer.area) }</div>
+                            <div> { String(this.state.offer.offerArea) }</div>
                         </div>
                         <div className = "row">
                             <label> Dlaczego to robisz?: </label>
-                            <div> { String(this.state.offer.reason) }</div>
+                            <div> { String(this.state.offer.offerReason) }</div>
                         </div>
-                        <div className = "row">
-                            <label> Płatność: </label>
-                            <div> { String(this.state.offer.payment) }</div>
-                        </div>
+
 
 
                     </div>
