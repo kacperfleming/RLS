@@ -123,6 +123,12 @@ class CreateOfferComponent extends Component{
             return <h3 className="text-center">Zaktualizuj usługę</h3>
         }
     }
+
+    addProduct (){
+        this.props.history.push('/add/addProduct');
+
+    }
+
     render() {
         return (
             <div>
@@ -146,15 +152,56 @@ class CreateOfferComponent extends Component{
                                                value={this.state.offerCost} onChange={this.changePriceHandler}/>
                                     </div>
                                     <div className = "form-group">
-                                        <label> Pilność</label>
-                                        <input placeholder="isUrgent" name="isUrgent" className="form-control"
-                                               value={this.state.isUrgent} onChange={this.changeUrgentHandler}/>
+                                        <label> Krótki opis usługi: </label>
+                                        <input placeholder="description" name="description" className="form-control"
+                                               value={this.state.description} onChange={this.changeDescriptionHandler}/>
+                                    </div>
+                                    <div className = "form-group">
+                                        <label> Kategoria: </label>
+                                        <br/>
+                                        <select value={this.state.offerCategory}
+                                                onChange={this.changeCategoryHandler}>
+                                            <option value="">Wybierz opcje</option>
+                                            <option value="0" >Wspieranie</option>
+                                            <option value="1" >Organizacja</option>
+                                            <option value="2">Zarabianie</option>
+                                            <option value="3" >Kierowanie</option>
+                                            <option value="4" >Promowanie</option>
+                                            <option value="5">Komunikowanie</option>
+                                            <option value="6" >Uświadamianie</option>
+                                            <option value="7" >Naprawa</option>
+                                            <option value="8">Hodowla</option>
+                                            <option value="9" >Poszukiwanie</option>
+                                            <option value="10" >Analiza i badania</option>
+                                            <option value="11">Pomaganie innym</option>
+                                            <option value="12">Budowanie zrozumienia</option>
+                                            <option value="13">Dawanie otuchy innym</option>
+                                            <option value="14">Łączenie zasobów i możliwości</option>
+                                            <option value="15">Przedsiębiorczość</option>
+                                            <option value="16">Zarządzanie zasobami</option>
+                                            <option value="17">Przywództwo</option>
+                                            <option value="18">Uważność</option>
+                                            <option value="19">Synergia w działaniu</option>
+                                            <option value="21">Uczciwość</option>
+                                            <option value="22">Generowanie</option>
+                                            <option value="23">Ochrona</option>
+                                            <option value="24">Instruktaż</option>
+                                            <option value="25">Nabywanie_kompetencji</option>
+                                            <option value="26">Umiejętność pracy pod presją czasu</option>
+                                            <option value="27">Dbałość o dobrą atmosferę</option>
+                                            <option value="28">Rozwiązywanie konfliktów</option>
+                                            <option value="29">Motywowanie pracowników</option>
+                                            <option value="30">Logiczne myślenie</option>
+                                            <option value="31">Motywacja samorozwoju</option>
+                                            <option value="32">Obsługa technologii</option>
+                                            <option value="33">Porada</option>
+                                        </select>
                                     </div>
                                     <div className = "form-group">
                                         <label> Grupa oferująca: </label>
                                         <br/>
                                         <select value={this.state.offerrorGroup} onChange={this.changeOfferorGroupHandler}>
-
+                                            <option value="">Wybierz opcje</option>
                                             <option value="0" >Psycholodzy i terapeuci</option>
                                             <option value="1" >Społeczność</option>
                                             <option value="2">Właściciele domów</option>
@@ -178,32 +225,80 @@ class CreateOfferComponent extends Component{
                                         </select>
                                     </div>
                                     <div className = "form-group">
-                                        <label> Krótki opis usługi: </label>
-                                        <input placeholder="description" name="description" className="form-control"
-                                               value={this.state.description} onChange={this.changeDescriptionHandler}/>
+                                        <label> Obszar: </label>
+                                        <br/>
+                                        <select value={this.state.offerArea} onChange={this.changeAreaHandler}>
+                                            <option value="">Wybierz opcje</option>
+                                            <option value="0" >Świadomość życia</option>
+                                            <option value="1" >Natura wokól mnie</option>
+                                            <option value="2">Firma i organizacja</option>
+                                            <option value="3" >Usługi i wykonastwo</option>
+                                            <option value="4" >Relacje z rodziną</option>
+                                            <option value="5" >Relacje ze znajomymi</option>
+                                            <option value="6">Ścieżka artysty</option>
+                                            <option value="7" >Narzędzia i systemy pracy</option>
+                                            <option value="8" >Komunikacja online</option>
+                                            <option value="9" >Komputer i telefon</option>
+                                            <option value="10">Internet i narzedzią</option>
+                                            <option value="11" >Komunikacja miejska</option>
+                                            <option value="12" >Postrzeganie innych</option>
+                                            <option value="13" >Szkoła i rozwój</option>
+                                            <option value="14">Świadoma uprawa roślin</option>
+                                            <option value="15" >Zwierzęta wokól nas</option>
+                                            <option value="16" >Świadome i zdrowe żywienie</option>
+                                            <option value="17" >Dbałość o zdrowie</option>
+                                            <option value="18" >Pasja i aktywności</option>
+                                        </select>
                                     </div>
                                     <div className = "form-group">
                                         <label> Opcja: </label>
-                                        <input placeholder="option" name="optionNeedOffer" className="form-control"
-                                               value={this.state.optionNeedOffer} onChange={this.changeOptionHandler}/>
-                                    </div>
-                                    <div className = "form-group">
-                                        <label> Kategoria: </label>
-                                        <input placeholder="category" name="offerCategory" className="form-control"
-                                               value={this.state.offerCategory} onChange={this.changeCategoryHandler}/>
-                                    </div>
-                                    <div className = "form-group">
-                                        <label> Obszar: </label>
-                                        <input placeholder="area" name="offerArea" className="form-control"
-                                               value={this.state.offerArea} onChange={this.changeAreaHandler}/>
+                                        <br/>
+                                        <select value={this.state.optionNeedOffer} onChange={this.changeOptionHandler}>
+                                            <option value="">Wybierz opcje</option>
+                                            <option value="0" >Potrzebuję</option>
+                                            <option value="1" >Oferuję</option>
+                                            <option value="2">Potrzebuję i oferuję</option>
+                                        </select>
                                     </div>
                                     <div className = "form-group">
                                     <label> Dlaczego to robisz?: </label>
-                                    <input placeholder="reason" name="offerReason" className="form-control"
-                                           value={this.state.offerReason} onChange={this.changeReasonHandler}/>
+                                        <br/>
+                                        <select value={this.state.offerReason} onChange={this.changeReasonHandler}>
+                                            <option value="">Wybierz opcje</option>
+                                            <option value="">Wybierz opcje</option>
+                                            <option value="0" >Spokój</option>
+                                            <option value="1" >Cierpliwość</option>
+                                            <option value="2">Kochanie</option>
+                                            <option value="3" >Uwolnienie</option>
+                                            <option value="4" >Jednoczenie</option>
+                                            <option value="5" >Zaufanie</option>
+                                            <option value="6" >Wiedza</option>
+                                            <option value="7">Cieszenie się</option>
+                                            <option value="8" >Wdzięczność</option>
+                                            <option value="9" >Zaopiekowanie</option>
+                                            <option value="10" >Kreowanie</option>
+                                            <option value="11" >Prawdziwość</option>
+                                            <option value="12">Sprawczość</option>
+                                            <option value="13" >Komunikowanie</option>
+                                            <option value="14" >Odwdzięczenie</option>
+                                            <option value="15" >Zadośćuczynienie</option>
+                                            <option value="16" >Dawanie_z_serca</option>
+                                        </select>
+                                        <div className = "form-group">
+                                            <label> Pilność</label>
+                                            <br/>
+                                            <select value={this.state.isUrgent} onChange={this.changeUrgentHandler}>
+                                                <option value="">Wybierz opcje</option>
+                                                <option value="true" >Pilne</option>
+                                                <option value="false" >Niepilne</option>
+                                            </select>
+                                        </div>
+                                            <div className="row">
+                                                <button className="btn btn-outline-primary" onClick={this.addProduct}>
+                                                    Dodaj produkt do oferty
+                                                </button>
+                                            </div>
                             </div>
-
-
                                     <button className="btn btn-success" onClick={this.saveOrUpdateOffer}>Zapisz</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Anuluj</button>
                                 </form>

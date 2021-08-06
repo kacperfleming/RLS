@@ -49,7 +49,6 @@ class GetAllOffers extends Component{
                     <button className="btn btn-outline-primary" onClick={this.addOffer}>
                         Dodaj usługę
                     </button>
-
                 </div>
                 <div className="a row">
                     <table className="table table-striped table-bordered">
