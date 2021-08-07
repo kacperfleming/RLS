@@ -85,6 +85,17 @@ class GetAllOffers extends Component{
 
                                             <button style={{marginLeft: "12px"}} onClick={ () =>
                                                 this.deleteOffer(offer.id)} className="btn btn-danger">Usuń </button>
+
+                                            <div id="fb-root"></div>
+                                            <script async defer crossOrigin="anonymous"
+                                                    src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v11.0"
+                                                    nonce="H0bi8Yoj"></script>
+
+                                            <div className="fb-share-button" data-href="https://www.google.pl/"
+                                                 data-layout="button_count" data-size="small"><a
+                                                target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.google.pl%2F&amp;src=sdkpreparse"
+                                                className="fb-xfbml-parse-ignore">Udostępnij na Facebook'u</a>
+                                            </div>
                                         </td>
 
 
