@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import OfferService from "../services/OfferService";
 
-
 class CreateOfferComponent extends Component{
 
     constructor(props) {

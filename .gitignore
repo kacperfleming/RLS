@@ -1,3 +1,6 @@
+# dependencies
+/Frontend/node_modules
+
 # Compiled class file
 *.class
 
