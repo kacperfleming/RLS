@@ -1,32 +1,63 @@
-import { List, makeStyles } from '@material-ui/core';
-import NavigationItem from './NavigationItem';
+import React from "react";
+import { List, makeStyles } from "@material-ui/core";
+import NavigationItem from "./NavigationItem";
 
-NAVIGATION_LIST_ITEMS = [
-    {
-        text: '',
-        to: ''
-    },
-]
+const NAVIGATION_LIST_ITEMS = [
+  {
+    text: "Home",
+    to: "/",
+    exact: true
+  },
+  {
+    text: "Create offer",
+    to: "/offers/new",
+  },
+  {
+    text: "Add product",
+    to: "/products/new",
+  },
+];
 
-const useStyles = makeStyles({
-    navigation: {
+// const NAVIGATION_LIST_ITEMS_AUTHENTICATED = [
+//   {
+//     text: "Home",
+//     to: "/",
+//     exact: true
+//   },
+//   {
+//     text: "Create offer",
+//     to: "/offers/new",
+//   },
+// ];
 
-    },
-    list: {
+const useStyles = makeStyles(theme => ({
+  list: {
+      display: 'flex',
+      height: '100%',
+      textAlign: 'center',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      padding: 0,
 
-    }
-})
+      [theme.breakpoints.up('md')]: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+      }
+  },
+}));
 
-const NavigationList = props => {
-    const styles = useStyles();
+const NavigationList = (props) => {
+  const styles = useStyles();
 
-    return (
-        <nav className={styles.navigation}>
-            <List className={styles.list}>
-                {NAVIGATION_LIST_ITEMS.map(item => <NavigationItem text={item.text} to={item.to} />)}
-            </List>
-        </nav>
-    )
-}
+  return (
+    <List className={styles.list}>
+      {NAVIGATION_LIST_ITEMS.map((item) => (
+        <NavigationItem text={item.text} to={item.to} exact={!!item.exact} />
+      ))}
+    </List>
+  );
+};
 
 export default NavigationList;
