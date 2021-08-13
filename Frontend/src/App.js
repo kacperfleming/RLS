@@ -9,7 +9,8 @@ import GetAllOffers from "./components/GetAllOffers";
 import CreateOfferComponent from "./components/CreateOfferComponent";
 import ViewOfferComponent from "./components/ViewOfferComponent";
 
-const NewProductForm = lazy(() => import("./newOffert/page/NewProductForm"));
+const NewProductForm = lazy(() => import("./newProductForm/page/NewProductForm"));
+const NewOfferForm = lazy(() => import("./newOfferForm/page/NewOfferForm"));
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <Suspense fallback={<FallbackComp />}>
       
         <Switch>
-          <Route path="/offers/new" component={CreateOfferComponent} />
+          <Route path="/offers/new" component={NewOfferForm} />
           {/* <Route path="/offers/edit/:oid" component={} />
           <Route path="/offers/:oid" component={} /> */}
 

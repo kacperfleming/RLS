@@ -9,7 +9,7 @@ import { callbackify } from 'util';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        width: '100%'
+        
     },
     header: {
 

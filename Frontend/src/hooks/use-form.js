@@ -16,11 +16,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "60%",
+    width: "90%",
     minWidth: 300,
     maxWidth: 600,
     margin: "0 auto",
     padding: "10px 0",
+    position: 'relative'
   },
   title: {
     marginBottom: 20,
@@ -30,14 +31,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+
   },
   field: {
     marginBottom: 10,
-    minWidth: 300,
+    width: '40vw',
+    minWidth: 280,
+    maxWidth: 500
   },
 }));
 
-const useCustomForm = ({ inputs, title, url, method, auth }) => {
+const useCustomForm = ({ inputs, title, buttonText, url, method, auth }) => {
   const styles = useStyles();
 
   const [data, setData] = useState();
@@ -50,12 +54,13 @@ const useCustomForm = ({ inputs, title, url, method, auth }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (data) => {
+      console.log(data);
     axios({
       url: `${process.env.REACT_APP_BACKEND}/${url}`,
       method,
-      data: inputs,
-      headers: auth && { Authorization: `Bearer ${token}` },
+      data,
+      headers: auth && { 'Authorization': `Bearer ${token}` },
     })
       .then((response) => {
         if (response.status.ok) {
@@ -68,6 +73,8 @@ const useCustomForm = ({ inputs, title, url, method, auth }) => {
         setError(error.message);
       });
   };
+
+  console.log(errors);
 
   return {
     data,
@@ -86,10 +93,10 @@ const useCustomForm = ({ inputs, title, url, method, auth }) => {
               control={control}
               defaultValue=""
               rules={{
-                minLength: formField.type === "text" && formField.minLength,
-                maxLength: formField.type === "text" && formField.maxLength,
-                min: formField.type === "number" && formField.min,
-                max: formField.type === "number" && formField.max,
+                minLength: formField.type === "text" && formField.minLength || null,
+                maxLength: formField.type === "text" && formField.maxLength || null,
+                min: formField.type === "number" && formField.min || null,
+                max: formField.type === "number" && formField.max || null,
               }}
               render={({ field }) => (
                 <TextField
@@ -106,6 +113,7 @@ const useCustomForm = ({ inputs, title, url, method, auth }) => {
                       `Minimum number is ${formField.min}.`) ||
                     (errors[formField.label]?.type === "max" &&
                       `Maximum number is ${formField.max}.`)
+                    || ''
                   }
                   type={formField.type}
                   multiline={!!formField.multiline}
@@ -118,8 +126,8 @@ const useCustomForm = ({ inputs, title, url, method, auth }) => {
                   {...field}
                 >
                   {formField.type === "select" &&
-                    formField.options.map((option) => (
-                      <MenuItem key={option} value={option}>
+                    formField.options.map((option, i) => (
+                      <MenuItem key={i} value={i}>
                         {option}
                       </MenuItem>
                     ))}
@@ -129,7 +137,7 @@ const useCustomForm = ({ inputs, title, url, method, auth }) => {
           ))}
 
           <Button type="submit" variant="contained" style={{ outline: "none" }}>
-            SUBMIT
+            {buttonText || 'SUBMIT'}
           </Button>
         </form>
       </Paper>

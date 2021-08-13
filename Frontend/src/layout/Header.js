@@ -6,17 +6,28 @@ import {
 
 import HeaderBG from "./HeaderBG";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   header: {
     width: "100%",
+    position: 'relative',
     height: 200,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    '@media (max-width: 450px)': {
+      height: 'auto',
+    }
   },
   image: {
     height: '100%',
     zIndex: 50,
+    boxShadow: `0 0 6px ${theme.palette.primary.light}`,
+    clipPath: 'inset(0px -15px 0px 0px)',
+
+    '@media (max-width: 450px)': {
+      width: '100%',
+      height: 'auto'
+    }
   },
-});
+}));
 
 const Header = (props) => {
   const styles = useStyles();

@@ -4,31 +4,19 @@ import NavigationItem from "./NavigationItem";
 
 const NAVIGATION_LIST_ITEMS = [
   {
-    text: "Home",
+    text: "Strona Główna",
     to: "/",
     exact: true
   },
   {
-    text: "Create offer",
+    text: "Stwórz Ofertę",
     to: "/offers/new",
   },
   {
-    text: "Add product",
+    text: "Dodaj Produkt",
     to: "/products/new",
   },
 ];
-
-// const NAVIGATION_LIST_ITEMS_AUTHENTICATED = [
-//   {
-//     text: "Home",
-//     to: "/",
-//     exact: true
-//   },
-//   {
-//     text: "Create offer",
-//     to: "/offers/new",
-//   },
-// ];
 
 const useStyles = makeStyles(theme => ({
   list: {
