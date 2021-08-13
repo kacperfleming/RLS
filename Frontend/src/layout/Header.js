@@ -24,7 +24,7 @@ const Header = (props) => {
   return (
       <Box component="header" className={styles.header}>
         <HeaderBG />
-        <img src="./photo_2021-08-02_21-24-01.jpg" alt="oferty życia" className={styles.image}/>
+        <img src="/assets/images/photo_2021-08-02_21-24-01.jpg" alt="oferty życia" className={styles.image}/>
       </Box>
   );
 };

@@ -33,17 +33,19 @@ const NAVIGATION_LIST_ITEMS = [
 const useStyles = makeStyles(theme => ({
   list: {
       display: 'flex',
-      height: '100%',
+      minWidth: 250,
       textAlign: 'center',
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'center',
       padding: 0,
+      marginBottom: 20,
 
       [theme.breakpoints.up('md')]: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
+        marginBottom: 0
       }
   },
 }));
@@ -54,7 +56,7 @@ const NavigationList = (props) => {
   return (
     <List className={styles.list}>
       {NAVIGATION_LIST_ITEMS.map((item) => (
-        <NavigationItem text={item.text} to={item.to} exact={!!item.exact} />
+        <NavigationItem key={item.to + item.text} text={item.text} to={item.to} exact={!!item.exact} />
       ))}
     </List>
   );

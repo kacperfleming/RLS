@@ -8,8 +8,10 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 'bold',
         width: '100%',
         minWidth: 100,
-        color: theme.palette.common.white,
         transition: theme.transitions.create(['color', 'background-color'], {duration: theme.transitions.duration.standard, easing: theme.transitions.easing.easeOut}),
+        [theme.breakpoints.up('md')]: {
+            color: theme.palette.common.white,
+        },
         '&:hover': {
             textDecoration: 'none',
             color: theme.palette.secondary.light,

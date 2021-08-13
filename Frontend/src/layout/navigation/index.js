@@ -10,6 +10,10 @@ const useStyles = makeStyles({
     },
     toolbar: {
         height: 64
+    },
+    drawer: {
+      width: '30%',
+      minWidth: 500,
     }
 })
 
@@ -28,11 +32,11 @@ const Navigation = props => {
           onClick={props.closeSideDrawerHandler}
           open={props.isMenuOpen}
         >
-          <Drawer anchor="left" open={props.isMenuOpen}>
-            <IconButton style={{height: 50, width: 50, margin: '0 auto'}} title="Close">
+          <Drawer className={styles.drawer} anchor="left" open={props.isMenuOpen}>
+            <NavigationList />
+            <IconButton style={{height: 50, width: 50, margin: '0 auto', outline: 'none'}} title="Close">
               <Close />
             </IconButton>
-            <NavigationList />
           </Drawer>
         </Backdrop>
         <Hidden smDown>
