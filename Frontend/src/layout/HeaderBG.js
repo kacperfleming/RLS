@@ -4,27 +4,70 @@ import { makeStyles } from "@material-ui/core";
 
 import {noise} from '@chriscourses/perlin-noise'
 
-const useStyles = makeStyles({
+
+let firstRender = true;
+
+const useStyles = makeStyles(theme => ({
     canvasBG: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
+        width: 'calc(100% - 457px)',
         height: 200,
-        zIndex: -1
+        zIndex: -1,
+        display: 'none',
+
+        '@media (min-width: 650px)': {
+          display: 'block',
+        }
     }
-});
+}));
 
 
 const mouse = {
     x: undefined,
-    y: undefined
+    y: undefined,
+    radius: 30
 }
 
 class Particle {
+  constructor({x, y, size=1, color='red', ih, iw}) {
+    this.x = x;
+    this.y = y;
+    this.baseX = x;
+    this.baseY = y;
+    this.baseSize = 0;
+    this.size = size;
+    this.color = color;
+    this.density = Math.random() * 2 + 5
+  }
+
+  draw(ctx) {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.baseSize, 0, Math.PI * 2, false);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  update(ctx) {
+      if (this.baseSize < this.size) this.baseSize += 0.01;
+      if (Math.abs(this.x - this.baseX) < 10) this.x += Math.random() * 2 - 1;
+      if (Math.abs(this.y - this.baseY) < 10) this.y += Math.random() * 2 - 1;
+
+      if (Math.abs(this.x - this.baseX) > 5) {
+        let dx = this.x - this.baseX;
+        this.x -= dx / 10;
+      }
+      if (Math.abs(this.y - this.baseY) > 5) {
+        let dy = this.y - this.baseY;
+        this.y -= dy / 10;
+      }
+    this.draw(ctx);
+  }
+}
+
+class FloatingParticle extends Particle {
   constructor({ x, y, radius, color, velocity }) {
-    this.x = x
-    this.y = y
+    super({x, y, radius, color});
+
     this.prevPosition = {
       x: this.x,
       y: this.y
@@ -37,24 +80,16 @@ class Particle {
       x: 0,
       y: 0
     }
-    this.radius = radius
-    this.color = color
   }
 
   draw(ctx) {
-    //   console.log('odległość: ' + + Math.sqrt(Math.pow(mouse.x - this.x, 2) + Math.pow(mouse.y - this.y, 2)));
-    // if(Math.sqrt(Math.pow(mouse.x - this.x, 2) + Math.pow(mouse.y - this.y, 2)) < 200) {
-    //     this.color = this.color !== 'red' && `hsl(${200}, 50%, 50%)`;
-    // } else {
-    //     this.color = 'red'
-    // }
     ctx.save()
     ctx.globalAlpha = 0.1
     ctx.beginPath()
     ctx.moveTo(this.prevPosition.x, this.prevPosition.y)
     ctx.lineTo(this.x, this.y)
     ctx.strokeStyle = this.color
-    ctx.lineWidth = this.radius
+    ctx.lineWidth = this.baseSize
     ctx.stroke()
     ctx.closePath()
     ctx.restore()
@@ -111,19 +146,47 @@ class Particle {
   }
 }
 
-let particles
-let increment = 0.0085
-let size = 3
-let vectors
+let floatingParticles;
+let particles;
+let increment = 0.0085;
+let size = 3;
+let vectors;
+let skip = 4;
+let ih;
+let iw;
+
+function placeText(ctx) {
+    const fontSize = 200;
+
+    ctx.font = `${fontSize}px Arial`;
+    ctx.fontWeight = "bold";
+    ctx.textAlign = "center";
+    ctx.baseline = "middle";
+    ctx.fillText('❤', iw / 2, ih/2 + fontSize/3);
+    const textCoordinates = ctx.getImageData(0, 0, iw, ih).data;
+
+  particles = [];
+  for (let y = 0; y < ih; y += skip) {
+    for (let x = 0; x < iw; x += skip) {
+      let opacityIndex = (x + y * iw) * 4 + 3;
+      if (textCoordinates[opacityIndex] > 0) {
+        particles.push(new Particle({x, y, ih, iw}));
+      }
+    }
+  }
+}
 
 function init(canvas, ctx) {
+  ih = canvas.height;
+  iw = canvas.width;
+  placeText(ctx)
   vectors = []
-  particles = []
+  floatingParticles = []
   for (let i = 0; i < 200; i++) {
-    particles.push(
-      new Particle({
+    floatingParticles.push(
+      new FloatingParticle({
         x: 0,
-        y: canvas.height * Math.random(),
+        y: ih * Math.random(),
         radius: size * Math.random(),
         color: 'red',
         velocity: {
@@ -173,23 +236,33 @@ const HeaderBG = () => {
               }
               xOffset += increment
             }
-            particles.forEach((particle) => {
+            floatingParticles.forEach((particle) => {
               particle.update(vectors, canvas, ctx)
             })
-            console.log(mouse.y);
+
+            for (let i = 0; i < particles.length; i++) {
+              particles[i].update(ctx);
+            }
 
             ctx.fillStyle = 'rgba(255,255,255,0.2)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
           }
 
-        const mouseMoveHandler = (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        }
+        // const mouseMoveHandler = (e) => {
+        //     mouse.x = e.clientX - 230;
+        //     mouse.y = e.clientY;
+        // }
+
+        let timeout;
 
         const resizeHandler = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = 200;
+          clearTimeout(timeout);
+            timeout = setTimeout(() => {
+              canvas.width = window.innerWidth - 457;
+              canvas.height = 200;
+              init(canvas, ctx);
+            }, firstRender ? 0 : 200)
+          firstRender = false;
         }
         resizeHandler();
 
@@ -197,12 +270,13 @@ const HeaderBG = () => {
         animate();
 
         window.addEventListener('resize', resizeHandler);
-        window.addEventListener('mousemove', mouseMoveHandler);
+        // window.addEventListener('mousemove', mouseMoveHandler);
 
         return () => {
+            clearTimeout(timeout);
             window.cancelAnimationFrame(frame);
             window.removeEventListener('resize', resizeHandler);
-            window.removeEventListener('mousemove', mouseMoveHandler);
+            // window.removeEventListener('mousemove', mouseMoveHandler);
         };
     });
 

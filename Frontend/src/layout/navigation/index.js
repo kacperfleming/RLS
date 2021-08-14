@@ -3,12 +3,16 @@ import { AppBar, Toolbar, Hidden, IconButton, Backdrop, Drawer, makeStyles } fro
 import { Menu, Close } from '@material-ui/icons';
 
 import NavigationList from './NavigationList';
+import UserActions from './UserActions';
 
 const useStyles = makeStyles({
     navigation: {
        height: 64
     },
     toolbar: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         height: 64
     },
     drawer: {
@@ -22,7 +26,7 @@ const Navigation = props => {
 
   return (
     <AppBar component="nav" position="sticky" className={styles.navigation}>
-      <Toolbar className={styles.toolbar}>
+      <Toolbar component="nav" className={styles.toolbar}>
         <Hidden mdUp>
           <IconButton onClick={props.openSideDrawerHandler} style={{outline: 'none'}}>
             <Menu fontSize="large" />
@@ -42,6 +46,7 @@ const Navigation = props => {
         <Hidden smDown>
             <NavigationList />
         </Hidden>
+            <UserActions />
       </Toolbar>
     </AppBar>
   );

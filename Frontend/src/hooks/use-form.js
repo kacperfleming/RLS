@@ -7,6 +7,7 @@ import {
   Paper,
   Button,
   Typography,
+  FormHelperText,
   makeStyles,
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
@@ -41,10 +42,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const useCustomForm = ({ inputs, title, buttonText, url, method, auth }) => {
+const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, auth }) => {
   const styles = useStyles();
 
-  const [data, setData] = useState();
+  const [responseData, setResponseData] = useState();
   const [error, setError] = useState();
   const token = useSelector((state) => state.auth.token);
 
@@ -64,7 +65,7 @@ const useCustomForm = ({ inputs, title, buttonText, url, method, auth }) => {
     })
       .then((response) => {
         if (response.status.ok) {
-          setData(response.data);
+          setResponseData(response.data);
         } else {
           setError(response.error.message);
         }
@@ -77,7 +78,7 @@ const useCustomForm = ({ inputs, title, buttonText, url, method, auth }) => {
   console.log(errors);
 
   return {
-    data,
+    responseData,
     error,
     form: (
       <Paper className={styles.root}>
@@ -93,8 +94,8 @@ const useCustomForm = ({ inputs, title, buttonText, url, method, auth }) => {
               control={control}
               defaultValue=""
               rules={{
-                minLength: formField.type === "text" && formField.minLength || null,
-                maxLength: formField.type === "text" && formField.maxLength || null,
+                minLength: (formField.type === "text" || formField.type === 'password' || formField.type === 'email') && formField.minLength || null,
+                maxLength: (formField.type === "text" || formField.type === 'password' || formField.type === 'email') && formField.maxLength || null,
                 min: formField.type === "number" && formField.min || null,
                 max: formField.type === "number" && formField.max || null,
               }}
@@ -139,6 +140,7 @@ const useCustomForm = ({ inputs, title, buttonText, url, method, auth }) => {
           <Button type="submit" variant="contained" style={{ outline: "none" }}>
             {buttonText || 'SUBMIT'}
           </Button>
+          {helperText && <FormHelperText>{helperText}</FormHelperText>}
         </form>
       </Paper>
     ),

@@ -1,22 +1,9 @@
 import React from "react";
 import { List, makeStyles } from "@material-ui/core";
+import { useSelector } from "react-redux";
+
 import NavigationItem from "./NavigationItem";
 
-const NAVIGATION_LIST_ITEMS = [
-  {
-    text: "Strona Główna",
-    to: "/",
-    exact: true
-  },
-  {
-    text: "Stwórz Ofertę",
-    to: "/offers/new",
-  },
-  {
-    text: "Dodaj Produkt",
-    to: "/products/new",
-  },
-];
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -41,10 +28,38 @@ const useStyles = makeStyles(theme => ({
 const NavigationList = (props) => {
   const styles = useStyles();
 
+  const token = useSelector(state => state.auth.token);
+
+  let navigationListItems = [
+    {
+      content: "Strona Główna",
+      to: "/",
+      exact: true
+    },
+  ];
+
+  if(token) {
+    navigationListItems = [
+      {
+        content: "Strona Główna",
+        to: "/",
+        exact: true
+      },
+      {
+        content: "Stwórz Ofertę",
+        to: "/offers/new",
+      },
+      {
+        content: "Dodaj Produkt",
+        to: "/products/new",
+      },
+    ];
+  }
+
   return (
     <List className={styles.list}>
-      {NAVIGATION_LIST_ITEMS.map((item) => (
-        <NavigationItem key={item.to + item.text} text={item.text} to={item.to} exact={!!item.exact} />
+      {navigationListItems.map((item) => (
+        <NavigationItem key={item.to + item.content} to={item.to} exact={!!item.exact}>{item.content}</NavigationItem>
       ))}
     </List>
   );

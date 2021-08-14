@@ -9,7 +9,8 @@ import HeaderBG from "./HeaderBG";
 const useStyles = makeStyles(theme => ({
   header: {
     width: "100%",
-    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
     height: 200,
     overflow: 'hidden',
     '@media (max-width: 450px)': {
@@ -34,10 +35,10 @@ const Header = (props) => {
 
   return (
       <Box component="header" className={styles.header}>
-        <HeaderBG />
         <img src="/assets/images/photo_2021-08-02_21-24-01.jpg" alt="oferty życia" className={styles.image}/>
+        {window.innerWidth > 650 && <HeaderBG />}
       </Box>
   );
 };
 
-export default Header;
+export default React.memo(Header);

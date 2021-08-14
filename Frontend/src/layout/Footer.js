@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 const Footer = props => {
     const styles = useStyles();
 
-    return <Box className={styles.footer}>All rigths reserved <Copyright style={{height: 12, width: 12, verticalAlign: 'baseline'}} /> KIRG {new Date().getFullYear()}</Box>
+    return <Box className={styles.footer}>Wszystkie prawa zastrzeżone <Copyright style={{height: 12, width: 12, verticalAlign: 'baseline'}} /> KIRG {new Date().getFullYear()}</Box>
 } 
 
 export default Footer;

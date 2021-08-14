@@ -8,12 +8,12 @@ type cartItem = {
 }
 
 export interface CartSlice {
-    cartItems: cartItem[],
+    items: cartItem[],
     totalPrice: number,
 }
 
 const initialState:CartSlice = {
-    cartItems: [],
+    items: [],
     totalPrice: 0,
 }
 

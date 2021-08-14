@@ -1,13 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 export interface AuthSlice {
-    userId?: string;
-    token?: string;
+    userId: string | null;
+    token: string | null;
 }
 
 const initialState:AuthSlice = {
-    userId: undefined,
-    token: undefined
+    userId: null,
+    token:  'abc'
 }
 
 const authSlice = createSlice({
@@ -19,8 +19,8 @@ const authSlice = createSlice({
             state.token = action.payload.token;
         },
         logout(state) {
-            state.userId = undefined;
-            state.token = undefined;
+            state.userId = null;
+            state.token = null;
         }
     }
 });
