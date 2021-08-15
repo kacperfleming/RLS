@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardHeader,
@@ -19,11 +19,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     minWidth: 300,
     margin: "0 auto",
-
-    // [theme.breakpoints.up('sm')]: {
-    //     width: '20%'
-    // }
-  },
+  }
 }));
 
 const CartItem = (props) => {

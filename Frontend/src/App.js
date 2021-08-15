@@ -5,9 +5,6 @@ import { useSelector } from "react-redux";
 
 import Layout from "./layout";
 import FallbackComp from "./layout/FallbackComp";
-import GetAllOffers from "./components/GetAllOffers";
-import CreateOfferComponent from "./components/CreateOfferComponent";
-import ViewOfferComponent from "./components/ViewOfferComponent";
 
 const NewProductForm = lazy(() =>
   import("./newProductForm/page/NewProductForm")
@@ -18,6 +15,7 @@ const Cart = lazy(() => import("./cart/page/Cart"));
 const Login = lazy(() => import("./auth/page/Login"));
 const Register = lazy(() => import("./auth/page/Register"));
 const Logout = lazy(() => import("./auth/page/Logout"));
+const GlobalMarket = lazy(() => import("./globalMarket/page/GlobalMarket"));
 
 function App() {
   const token = useSelector(state => state.auth.token);
@@ -31,7 +29,7 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
 
-      <Route path="/" exact component={GetAllOffers} />
+      <Route path="/" exact component={GlobalMarket} />
       <Redirect to="/login" />
     </Switch>
   );
@@ -50,7 +48,7 @@ function App() {
         <Route path="/cart" component={Cart} />
 
         <Route path="/logout" component={Logout} />
-        <Route path="/" exact component={GetAllOffers} />
+        <Route path="/" exact component={GlobalMarket} />
         <Redirect to="/" />
       </Switch>
     );

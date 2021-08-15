@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     textAlign: 'center',
-    marginBottom: 20
+    margin: '20px 0',
   },
   list: {
     display: "grid",
@@ -94,7 +94,8 @@ const Cart = (props) => {
   }
 
   return (
-    <Paper className={styles.cartContainer} elevation={4}>
+    // <Paper className={styles.cartContainer} elevation={4}>
+    <>
       <Typography className={styles.title} component="h1" variant="h4">
         Mój koszyk
       </Typography>
@@ -122,11 +123,12 @@ const Cart = (props) => {
         open={Boolean(anchorEl)}
         onClose={closeMenuHandler}
       >
-        <MenuItem onClick={incrementQuantityHandler}>One more</MenuItem>
-        <MenuItem onClick={decrementQuantityHandler}>One less</MenuItem>
-        <MenuItem onClick={removeFromCartHandler}>Remove from cart</MenuItem>
+        <MenuItem onClick={incrementQuantityHandler}>Dodaj jeden</MenuItem>
+        <MenuItem onClick={decrementQuantityHandler}>Usuń jeden</MenuItem>
+        <MenuItem onClick={removeFromCartHandler}>Usuń wszystko</MenuItem>
       </Menu>
-    </Paper>
+    </>
+    /* </Paper> */
   );
 };
 

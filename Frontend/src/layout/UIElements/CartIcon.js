@@ -12,9 +12,9 @@ const StyledBadge = withStyles(theme => ({
 
 const CartIcon = props => {
     return (
-        <Badge badgeContent={props.itemsCount} color="secondary">
+        <StyledBadge badgeContent={props.itemsCount} color="secondary">
             <ShoppingCart />
-        </Badge>
+        </StyledBadge>
     )
 }
 

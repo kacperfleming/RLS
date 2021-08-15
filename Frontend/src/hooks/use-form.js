@@ -94,10 +94,10 @@ const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, aut
               control={control}
               defaultValue=""
               rules={{
-                minLength: (formField.type === "text" || formField.type === 'password' || formField.type === 'email') && formField.minLength || null,
-                maxLength: (formField.type === "text" || formField.type === 'password' || formField.type === 'email') && formField.maxLength || null,
-                min: formField.type === "number" && formField.min || null,
-                max: formField.type === "number" && formField.max || null,
+                minLength: ((formField.type === "text" || formField.type === 'password' || formField.type === 'email') && formField.minLength) || null,
+                maxLength: ((formField.type === "text" || formField.type === 'password' || formField.type === 'email') && formField.maxLength) || null,
+                min: (formField.type === "number" && formField.min) || null,
+                max: (formField.type === "number" && formField.max) || null,
               }}
               render={({ field }) => (
                 <TextField
@@ -118,7 +118,6 @@ const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, aut
                   }
                   type={formField.type}
                   multiline={!!formField.multiline}
-                  minRows={4}
                   minRows={formField.multiline && formField.minRows}
                   maxRows={formField.multiline && formField.maxRows}
                   variant="outlined"

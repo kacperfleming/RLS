@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px 5px",
     fontWeight: "bold",
     width: "100%",
+    height: '100%',
     minWidth: 100,
     transition: theme.transitions.create(["color", "background-color"], {
       duration: theme.transitions.duration.standard,
@@ -31,7 +32,7 @@ const NavigationItem = (props) => {
   const styles = useStyles();
 
   return (
-    <ListItem style={{ padding: 0, textAlign: 'center' }}>
+    <ListItem style={{ padding: 0, textAlign: 'center', height: 'inherit' }}>
       <NavLink
         to={props.to}
         exact={props.exact}

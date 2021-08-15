@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Tooltip, IconButton, makeStyles, Icon } from "@material-ui/core";
+import { List, IconButton, makeStyles } from "@material-ui/core";
 import {VpnKey, ExitToApp} from '@material-ui/icons';
 import { useSelector } from 'react-redux';
 
@@ -9,6 +9,7 @@ import NavigationItem from "./NavigationItem";
 const useStyles = makeStyles(theme=> ({
     list: {
         display: 'flex',
+        height: '100%',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
@@ -21,6 +22,8 @@ const UserActions = props => {
 
     const token = useSelector(state => state.auth.token);
 
+    const items = useSelector(state => state.cart.items);
+
     let userActions = [
         {
             to: '/login',
@@ -32,7 +35,7 @@ const UserActions = props => {
         userActions = [
             {
                 to: '/cart',
-                content: <CartIcon itemsCount={2} />
+                content: <CartIcon itemsCount={items.length} />
             },
             {
                 to: '/logout',
