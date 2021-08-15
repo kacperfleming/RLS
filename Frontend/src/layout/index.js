@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     main: {
         position: 'relative',
         minHeight: 'calc(100vh - 264px)',
-        padding: theme.spacing(2)
+        padding: `${theme.spacing(2)} 0`
     },
     footer: {
 

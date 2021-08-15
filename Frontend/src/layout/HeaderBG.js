@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useRef } from "react";
 import { makeStyles } from "@material-ui/core";
+import { useInView } from 'react-intersection-observer';
 
 import {noise} from '@chriscourses/perlin-noise'
 
@@ -8,15 +9,19 @@ import {noise} from '@chriscourses/perlin-noise'
 let firstRender = true;
 
 const useStyles = makeStyles(theme => ({
-    canvasBG: {
-        width: 'calc(100% - 457px)',
-        height: 200,
-        zIndex: -1,
-        display: 'none',
+    container: {
+      width: 'calc(100% - 457px)',
+      height: 200,
+      zIndex: -1,
+      display: 'none',
 
-        '@media (min-width: 650px)': {
-          display: 'block',
-        }
+      '@media (min-width: 650px)': {
+        display: 'block',
+      }
+    },
+    canvasBG: {
+      height: '100%',
+      width: '100%'
     }
 }));
 
@@ -204,6 +209,10 @@ function init(canvas, ctx) {
 const HeaderBG = () => {
     const styles = useStyles();
 
+    const {ref, inView} = useInView({
+      threshold: 0.25
+    });
+
     const canvRef = useRef();
 
     useEffect(() => {
@@ -217,6 +226,7 @@ const HeaderBG = () => {
         let time = 0
         function animate() {
             frame = requestAnimationFrame(animate);
+            if(!inView) return;
             time += 1
 
             if(parseInt(time) % 3 !== 0) return;
@@ -248,11 +258,6 @@ const HeaderBG = () => {
             ctx.fillRect(0, 0, canvas.width, canvas.height);
           }
 
-        // const mouseMoveHandler = (e) => {
-        //     mouse.x = e.clientX - 230;
-        //     mouse.y = e.clientY;
-        // }
-
         let timeout;
 
         const resizeHandler = () => {
@@ -262,25 +267,22 @@ const HeaderBG = () => {
               canvas.height = 200;
               init(canvas, ctx);
             }, firstRender ? 0 : 200)
-          firstRender = false;
         }
         resizeHandler();
-
-        init(canvas, ctx);
-        animate();
-
-        window.addEventListener('resize', resizeHandler);
-        // window.addEventListener('mousemove', mouseMoveHandler);
-
+        console.log('init');
+          init(canvas, ctx);
+          animate();
+  
+          window.addEventListener('resize', resizeHandler);
+          firstRender = false;
         return () => {
             clearTimeout(timeout);
             window.cancelAnimationFrame(frame);
             window.removeEventListener('resize', resizeHandler);
-            // window.removeEventListener('mousemove', mouseMoveHandler);
         };
     });
 
-    return <canvas ref={canvRef} className={styles.canvasBG} />
+    return <div ref={ref} className={styles.container}><canvas ref={canvRef} className={styles.canvasBG} /></div>
 }
 
 export default HeaderBG;
