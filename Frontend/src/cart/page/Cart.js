@@ -12,7 +12,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 
 import { cartActions } from "../../store/cartSlice";
-import CartItem from "../components/CartItem";
+import Offer from "../../shared/offers/Offer";
 
 const useStyles = makeStyles((theme) => ({
   cartContainer: {
@@ -63,7 +63,7 @@ const Cart = (props) => {
     dispatch(cartActions.incrementQuantity(id));
 
   const decrementQuantityHandler = () => {
-      if(cart.items.find(item => item.id === id).quantity === 1) {
+      if(cart.offers.find(item => item.id === id).quantity === 1) {
         removeFromCartHandler();
         return;
       }
@@ -76,7 +76,7 @@ const Cart = (props) => {
     closeMenuHandler();
   };
 
-  if (cart.items.length < 1) {
+  if (cart.offers.length < 1) {
     return (
       <Card
         className={styles.card}
@@ -100,16 +100,11 @@ const Cart = (props) => {
         Mój koszyk
       </Typography>
       <List className={styles.list}>
-        {cart.items.map((item) => (
-          <CartItem
+        {cart.offers.map((item) => (
+          <Offer
             key={item.id}
             openMenu={openMenuHandler}
-            id={item.id}
-            author={item.author}
-            name={item.name}
-            description={item.description}
-            quantity={item.quantity}
-            price={item.price}
+            {...item}
           />
         ))}
       </List>

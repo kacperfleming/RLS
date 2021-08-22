@@ -18,7 +18,7 @@ const REGISTER_FIELDS = [
 ];
 
 const Register = props => {
-    const {form} = useCustomForm({inputs: REGISTER_FIELDS, title: 'Rejestracja', buttonText: 'Zarejestruj mnie', url: 'register', method: 'POST', auth: false});
+    const {form} = useCustomForm({inputs: REGISTER_FIELDS, title: 'Rejestracja', buttonText: 'Zarejestruj mnie', url: 'applicationUser', method: 'POST', auth: false});
 
     return form;
 }

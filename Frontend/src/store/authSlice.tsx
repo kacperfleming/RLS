@@ -6,7 +6,7 @@ export interface AuthSlice {
 }
 
 const initialState:AuthSlice = {
-    userId: null,
+    userId: 'u123456',
     token:  'abc'
 }
 

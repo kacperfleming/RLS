@@ -22,7 +22,7 @@ const UserActions = props => {
 
     const token = useSelector(state => state.auth.token);
 
-    const items = useSelector(state => state.cart.items);
+    const offers = useSelector(state => state.cart.offers);
 
     let userActions = [
         {
@@ -35,7 +35,7 @@ const UserActions = props => {
         userActions = [
             {
                 to: '/cart',
-                content: <CartIcon itemsCount={items.length} />
+                content: <CartIcon itemsCount={offers.length} />
             },
             {
                 to: '/logout',

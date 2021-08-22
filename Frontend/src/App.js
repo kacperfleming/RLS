@@ -16,6 +16,7 @@ const Login = lazy(() => import("./auth/page/Login"));
 const Register = lazy(() => import("./auth/page/Register"));
 const Logout = lazy(() => import("./auth/page/Logout"));
 const GlobalMarket = lazy(() => import("./globalMarket/page/GlobalMarket"));
+const UserOffers = lazy(() => import("./UserOffers/page/UserOffers"));
 
 function App() {
   const token = useSelector(state => state.auth.token);
@@ -41,7 +42,8 @@ function App() {
         {/* <Route path="/offers/edit/:oid" component={} />
     <Route path="/offers/:oid" component={} /> */}
 
-        <Route path="/products/new" component={NewProductForm} />
+        <Route path="/offers/:oid/add-product" component={NewProductForm} />
+        <Route path="/offers/:uid" component={UserOffers} />
         {/* <Route path="/products/edit/:pid" component={} />
     <Route path="/products/:pid" component={} /> */}
 

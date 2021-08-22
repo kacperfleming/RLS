@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 const NavigationList = (props) => {
   const styles = useStyles();
 
-  const token = useSelector(state => state.auth.token);
+  const {token, userId} = useSelector(state => state.auth);
 
   let navigationListItems = [
     {
@@ -50,8 +50,8 @@ const NavigationList = (props) => {
         to: "/offers/new",
       },
       {
-        content: "Dodaj Produkt",
-        to: "/products/new",
+        content: "Moje Oferty",
+        to: `/offers/${userId}`,
       },
     ];
   }

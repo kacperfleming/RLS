@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import { useForm, Controller } from "react-hook-form";
 import {
@@ -42,8 +43,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, auth }) => {
+const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, redirect, auth }) => {
   const styles = useStyles();
+
+  const history = useHistory();
 
   const [responseData, setResponseData] = useState();
   const [error, setError] = useState();
@@ -81,7 +84,7 @@ const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, aut
     responseData,
     error,
     form: (
-      <Paper className={styles.root}>
+      <Paper className={styles.root} elevation={0} square>
         <Typography component="h2" variant="h5" className={styles.title}>
           {title}
         </Typography>
@@ -90,7 +93,7 @@ const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, aut
           {inputs.map((formField) => (
             <Controller
               key={formField.label}
-              name={formField.label}
+              name={formField.fieldName}
               control={control}
               defaultValue=""
               rules={{

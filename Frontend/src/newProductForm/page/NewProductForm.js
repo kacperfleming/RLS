@@ -34,7 +34,7 @@ const FORM_FIELDS = [
 
 const NewOffer = props => {
 
-    const {form, data} = useCustomForm({inputs: FORM_FIELDS, title: 'Dodaj produkt', buttonText: 'DODAJ PRODUKT DO OFERTY', url: 'add-product', method: 'POST', auth: true});
+    const {form, data} = useCustomForm({inputs: FORM_FIELDS, title: 'Dodaj produkt do oferty', buttonText: 'DODAJ PRODUKT DO OFERTY', url: 'add-product', method: 'POST', auth: true});
 
     return form;
 }
