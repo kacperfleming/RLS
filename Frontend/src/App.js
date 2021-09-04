@@ -69,12 +69,12 @@ function App() {
 
   let routes = (
     <Switch>
-      {/* <Route path="/offers/:oid" component={} /> */}
+      {/* <Route path="/offer/:oid" component={} /> */}
 
       {/* <Route path="/products/:pid" component={} /> */}
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      <Route path="/offers/:oid/details" component={OfferDetails} />
+      <Route path="/offer/:oid/details" component={OfferDetails} />
 
       <Route path="/" exact component={GlobalMarket} />
       <Redirect to="/login" />
@@ -84,13 +84,15 @@ function App() {
   if (token) {
     routes = (
       <Switch>
-        <Route path="/offers/new" component={NewOfferForm} />
-        {/* <Route path="/offers/edit/:oid" component={} />
-    <Route path="/offers/:oid" component={} /> */}
+        <Route path="/offer/new" component={NewOfferForm} />
 
         <Route path="/offers/:oid/add-product" component={NewProductForm} />
-        <Route path="/offers/:oid/details" component={OfferDetails} />
         <Route path="/offers/:uid" component={UserOffers} />
+
+        <Route path="/offer/:oid/details" component={OfferDetails} />
+        {/* <Route path="/offer/edit/:oid" component={} />
+    <Route path="/offer/:oid" component={} /> */}
+
         {/* <Route path="/products/edit/:pid" component={} />
     <Route path="/products/:pid" component={} /> */}
 

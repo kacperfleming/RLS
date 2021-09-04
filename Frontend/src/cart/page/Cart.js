@@ -16,12 +16,12 @@ import Offer from "../../shared/offers/Offer";
 
 const useStyles = makeStyles((theme) => ({
   cartContainer: {
-    width: '100%',
+    width: "100%",
     padding: 10,
   },
   title: {
-    textAlign: 'center',
-    margin: '20px 0',
+    textAlign: "center",
+    margin: "20px 0",
   },
   list: {
     display: "grid",
@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     columnGap: theme.spacing(1),
     rowGap: theme.spacing(2),
     margin: "0 auto",
-    width: '100%',
-    justifyContent: 'center'
+    width: "100%",
+    justifyContent: "center",
   },
   card: {
     width: "60%",
@@ -50,6 +50,7 @@ const Cart = (props) => {
   const [id, setId] = useState(null);
 
   const openMenuHandler = (event, id) => {
+    console.log(id);
     setAnchorEl(event.currentTarget);
     setId(id);
   };
@@ -58,18 +59,6 @@ const Cart = (props) => {
     setAnchorEl(null);
     setId(null);
   };
-
-  const incrementQuantityHandler = () =>
-    dispatch(cartActions.incrementQuantity(id));
-
-  const decrementQuantityHandler = () => {
-      if(cart.offers.find(item => item.id === id).quantity === 1) {
-        removeFromCartHandler();
-        return;
-      }
-      dispatch(cartActions.decrementQuantity(id));
-
-  }
 
   const removeFromCartHandler = () => {
     dispatch(cartActions.removeFromCart(id));
@@ -101,11 +90,7 @@ const Cart = (props) => {
       </Typography>
       <List className={styles.list}>
         {cart.offers.map((item) => (
-          <Offer
-            key={item.id}
-            openMenu={openMenuHandler}
-            {...item}
-          />
+          <Offer key={item.id} openMenu={openMenuHandler} {...item} />
         ))}
       </List>
       <Typography className={styles.title} component="p" variant="h5">
@@ -118,9 +103,7 @@ const Cart = (props) => {
         open={Boolean(anchorEl)}
         onClose={closeMenuHandler}
       >
-        <MenuItem onClick={incrementQuantityHandler}>Dodaj jeden</MenuItem>
-        <MenuItem onClick={decrementQuantityHandler}>Usuń jeden</MenuItem>
-        <MenuItem onClick={removeFromCartHandler}>Usuń wszystko</MenuItem>
+        <MenuItem onClick={removeFromCartHandler}>Usuń</MenuItem>
       </Menu>
     </>
     /* </Paper> */

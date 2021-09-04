@@ -14,8 +14,77 @@ import { ExpandMore, MoreVert } from "@material-ui/icons";
 import { useParams } from "react-router-dom";
 
 import useHttp from "../../hooks/use-http";
+import Product from "../components/Product";
+
+const DUMMY_PRODUCTS = [
+  {
+    id: "2",
+    name: "Bazylia",
+    description: "Świeża bazylia uprawiana bez używania sztucznych pestycydów.",
+    quantity: 50,
+    price: 3.5,
+  },
+  {
+    id: "abcdefg",
+    name: "Ręcznie robione krzesła",
+    description:
+      "Rzeźbione, dębowe krzesła ogrodowe wykonywane ręcznie i zaimpregnowane.",
+    quantity: 10,
+    price: 400,
+  },
+  {
+    id: "abcdefgh",
+    name: "Miód lipowy",
+    description: "Pakowany w słoikach o pojemności 1L.",
+    quantity: 25,
+    price: 6.2,
+  },
+];
+
+const DUMMY_DETAILS = {
+  id: "1",
+  name: "oferta przykładowa",
+  description: "Przykładowy opis",
+  price: 35.1,
+  discount: 2,
+  author: "u22222",
+  category: "test",
+  offerrorGroup: "test",
+  area: "test",
+  option: "test",
+  reason: "test",
+  isUrgent: false,
+  products: DUMMY_PRODUCTS,
+};
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "80%",
+    minWidth: 300,
+    maxWidth: 600,
+    margin: "20px auto",
+    padding: "10px 20px",
+  },
+  offerDetails: {
+    listStyle: "none",
+  },
+  attr: {},
+  attrKey: {
+    fontWeight: "bold",
+    color: theme.palette.common.black,
+  },
+  products: {
+    listStyle: "none",
+    padding: 0,
+    "& li:not(:first-child)": {
+      marginTop: 20,
+    },
+  },
+}));
 
 const OfferDetails = (props) => {
+  const styles = useStyles();
+
   const [expanded, setExpanded] = useState();
 
   const { sendRequest, data, loading, error } = useHttp();
@@ -23,68 +92,93 @@ const OfferDetails = (props) => {
   const params = useParams();
   const { oid } = params;
 
-  useEffect(() => {
-    if (data) return;
-    sendRequest({ url: `offer/${oid}/details` });
-  }, [data, oid]);
+  // useEffect(() => {
+  //   if (data) return;
+  //   sendRequest({ url: `offer/${oid}/details` });
+  // }, [data, oid]);
 
   return (
-    <>
-      <Card component="li" elevation={2}>
-        <CardHeader
-          action={
-            <IconButton
-              onClick={(event) => props.openMenu(event, props.id, props.author)}
-              style={{ outline: "none" }}
-            >
-              <MoreVert />
-            </IconButton>
-          }
-          title={props.name}
-        />
-
-        <CardContent component="ul">
-          <Typography component="li" variant="body2" color="textSecondary">
-            Cena przed obniżką: {props.price.toFixed(2)}zł
-          </Typography>
-          <Typography component="li" variant="body2" color="textSecondary">
-            Cena po obniżce: {(props.price - props.discount).toFixed(2)}zł
-          </Typography>
-          <Divider style={{ margin: "5px 0" }} />
-          <Typography component="li" variant="body1" color="textPrimary">
-            {props.description}
-          </Typography>
-        </CardContent>
-
-        <CardActions>
-          <IconButton onClick={() => setExpanded((prev) => !prev)}>
-            <ExpandMore />
+    <Card elevation={2} className={styles.root}>
+      <CardHeader
+        action={
+          <IconButton onClick={() => {}} style={{ outline: "none" }}>
+            <MoreVert />
           </IconButton>
-        </CardActions>
+        }
+        title={DUMMY_DETAILS.name}
+      />
 
-        <Collapse in={expanded}>
-          <Typography component="li" variant="body2" color="textSecondary">
-            Kategoria: {props.category}
+      <CardContent component="ul" className={styles.offerDetails}>
+        <Typography component="li" variant="body1" color="primary">
+          <Typography component="span" className={styles.attrKey}>
+            Cena przed obniżką:{" "}
           </Typography>
-          <Typography component="li" variant="body2" color="textSecondary">
-            Grupa oferująca: {props.offerrorGroup}
+          {DUMMY_DETAILS.price.toFixed(2)}zł
+        </Typography>
+        <Typography component="li" variant="body1" color="primary">
+          <Typography component="span" className={styles.attrKey}>
+            Cena po obniżce:{" "}
           </Typography>
-          <Divider style={{ margin: "5px 0" }} />
-          <Typography component="li" variant="body1" color="textPrimary">
-            Obszar: {props.area}
+          {(DUMMY_DETAILS.price - DUMMY_DETAILS.discount).toFixed(2)}zł
+        </Typography>
+        <Divider style={{ margin: "5px 0" }} />
+        <Typography component="li" variant="body1" color="primary">
+          <Typography component="span" className={styles.attrKey}>
+            Kategoria:{" "}
           </Typography>
-          <Typography component="li" variant="body1" color="textPrimary">
-            Opcja {props.option}
+          {DUMMY_DETAILS.category}
+        </Typography>
+        <Typography component="li" variant="body1" color="primary">
+          <Typography component="span" className={styles.attrKey}>
+            Grupa oferująca:{" "}
           </Typography>
-          <Typography component="li" variant="body1" color="textPrimary">
-            Dlaczego to robię: {props.reason}
+          {DUMMY_DETAILS.offerrorGroup}
+        </Typography>
+        <Typography component="li" variant="body1" color="primary">
+          <Typography component="span" className={styles.attrKey}>
+            Obszar:{" "}
           </Typography>
-          <Typography component="li" variant="body1" color="textPrimary">
-            Pilność: {props.isUrgent ? "pilne" : "niepilne"}
+          {DUMMY_DETAILS.area}
+        </Typography>
+        <Typography component="li" variant="body1" color="primary">
+          <Typography component="span" className={styles.attrKey}>
+            Opcja:{" "}
           </Typography>
-        </Collapse>
-      </Card>
-    </>
+          {DUMMY_DETAILS.option}
+        </Typography>
+        <Typography component="li" variant="body1" color="primary">
+          <Typography component="span" className={styles.attrKey}>
+            Dlaczego to robię:{" "}
+          </Typography>
+          {DUMMY_DETAILS.reason}
+        </Typography>
+        <Typography component="li" variant="body1" color="primary">
+          <Typography component="span" className={styles.attrKey}>
+            Pilność:{" "}
+          </Typography>
+          {DUMMY_DETAILS.isUrgent ? "pilne" : "niepilne"}
+        </Typography>
+        <Divider style={{ margin: "5px 0" }} />
+        <Typography component="li" variant="body1" color="textPrimary">
+          {DUMMY_DETAILS.description}
+        </Typography>
+      </CardContent>
+
+      <CardActions>
+        <IconButton
+          onClick={() => setExpanded((prev) => !prev)}
+          style={{ outline: "none" }}
+        >
+          <ExpandMore />
+        </IconButton>
+      </CardActions>
+
+      <Collapse className={styles.products} component="ul" in={expanded}>
+        {DUMMY_DETAILS.products.map((product) => (
+          <Product {...product} />
+        ))}
+      </Collapse>
+    </Card>
   );
 };
 

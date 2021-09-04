@@ -3,7 +3,7 @@ import { Box, Paper, makeStyles } from "@material-ui/core";
 
 import Header from "./Header";
 import Navigation from "./navigation";
-import Notification from "./Notification";
+import Notification from "./UIElements/Notification";
 import Footer from "./Footer";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,6 +13,8 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     minHeight: "calc(100vh - 264px)",
     padding: `${theme.spacing(2)} 0`,
+    justifyContent: "center",
+    alignItems: "center",
   },
   footer: {},
 }));

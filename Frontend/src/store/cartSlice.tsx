@@ -14,6 +14,12 @@ type Offer = {
   description: string;
   price: number;
   discount: number;
+  category: string;
+  offerrorGroup: string;
+  area: string;
+  option: string;
+  reason: string;
+  isUrgent: boolean;
   products: Product[];
 };
 
@@ -55,6 +61,26 @@ const DUMMY_OFFERS = [
     price: 50.25,
     discount: 10,
     products: DUMMY_PRODUCTS,
+    category: "test",
+    offerrorGroup: "test",
+    area: "test",
+    option: "test",
+    reason: "test",
+    isUrgent: false,
+  },
+  {
+    id: "2",
+    name: "Nazwa oferty",
+    description: "Opis oferty",
+    price: 50.25,
+    discount: 10,
+    products: DUMMY_PRODUCTS,
+    category: "test",
+    offerrorGroup: "test",
+    area: "test",
+    option: "test",
+    reason: "test",
+    isUrgent: false,
   },
 ];
 
@@ -71,7 +97,7 @@ const cartSlice = createSlice({
       state.offers.push(action.payload);
     },
     removeFromCart(state: CartSlice, action) {
-      state.offers.filter((offer) => offer.id !== action.payload);
+      state.offers = state.offers.filter((offer) => offer.id != action.payload);
     },
   },
 });

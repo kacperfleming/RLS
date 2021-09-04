@@ -6,17 +6,20 @@ import HeaderBG from "./HeaderBG";
 const useStyles = makeStyles((theme) => ({
   header: {
     width: "100%",
-    display: "flex",
     flexDirection: "row",
     height: 200,
     overflow: "hidden",
+    display: "none",
+
+    "@media (min-width: 450px)": {
+      display: "flex",
+    },
   },
   image: {
-    height: "auto",
+    height: "100%",
     objectFit: "fill",
 
     "@media (min-width: 651px)": {
-      height: "100%",
       zIndex: 50,
       boxShadow: `0 0 6px ${theme.palette.primary.light}`,
       clipPath: "inset(0px -15px 0px 0px)",

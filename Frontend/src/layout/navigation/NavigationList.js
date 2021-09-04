@@ -4,50 +4,49 @@ import { useSelector } from "react-redux";
 
 import NavigationItem from "./NavigationItem";
 
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   list: {
-      display: 'flex',
-      minWidth: 250,
-      textAlign: 'center',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      padding: 0,
-      marginBottom: 20,
+    display: "flex",
+    minWidth: 250,
+    textAlign: "center",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    padding: 0,
+    marginBottom: 20,
 
-      [theme.breakpoints.up('md')]: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        marginBottom: 0
-      }
+    [theme.breakpoints.up("md")]: {
+      width: "100%",
+      flexDirection: "row",
+      justifyContent: "space-evenly",
+      marginBottom: 0,
+    },
   },
 }));
 
 const NavigationList = (props) => {
   const styles = useStyles();
 
-  const {token, userId} = useSelector(state => state.auth);
+  const { token, userId } = useSelector((state) => state.auth);
 
   let navigationListItems = [
     {
       content: "Strona Główna",
       to: "/",
-      exact: true
+      exact: true,
     },
   ];
 
-  if(token) {
+  if (token) {
     navigationListItems = [
       {
         content: "Strona Główna",
         to: "/",
-        exact: true
+        exact: true,
       },
       {
         content: "Stwórz Ofertę",
-        to: "/offers/new",
+        to: "/offer/new",
       },
       {
         content: "Moje Oferty",
@@ -59,7 +58,13 @@ const NavigationList = (props) => {
   return (
     <List className={styles.list}>
       {navigationListItems.map((item) => (
-        <NavigationItem key={item.to + item.content} to={item.to} exact={!!item.exact}>{item.content}</NavigationItem>
+        <NavigationItem
+          key={item.to + item.content}
+          to={item.to}
+          exact={!!item.exact}
+        >
+          {item.content}
+        </NavigationItem>
       ))}
     </List>
   );

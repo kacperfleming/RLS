@@ -4,7 +4,7 @@ import { Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { useSelector, useDispatch } from "react-redux";
 
-import { notificationActions } from "../store/notificationSlice";
+import { notificationActions } from "../../store/notificationSlice";
 
 const CustomSnackbar = () => {
   const { open, message, severity, duration } = useSelector(
