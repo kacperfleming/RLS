@@ -1,15 +1,10 @@
 import React from "react";
 import {
-  ListItem,
   Card,
   CardHeader,
-  CardActionArea,
-  CardActions,
   CardContent,
-  Collapse,
   Divider,
   IconButton,
-  Avatar,
   Typography,
   makeStyles,
 } from "@material-ui/core";
@@ -17,18 +12,17 @@ import {
 import { MoreVert } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      width: "100%",
-      minWidth: 300,
-      margin: "0 auto",
-    }
-  }));
+  root: {
+    width: "100%",
+    minWidth: 300,
+    margin: "0 auto",
+  },
+}));
 
 const Offer = (props) => {
-    const styles = useStyles();
-    console.log(props.name);
+  const styles = useStyles();
 
-    return (
+  return (
     <Card className={styles.root} component="li" elevation={2}>
       <CardHeader
         // avatar={<Avatar>{props.author[0].toUpperCase()}</Avatar>}
@@ -56,7 +50,7 @@ const Offer = (props) => {
         </Typography>
       </CardContent>
     </Card>
-    )
+  );
 };
 
 export default Offer;

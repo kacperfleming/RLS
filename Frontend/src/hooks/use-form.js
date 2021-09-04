@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useForm, Controller } from "react-hook-form";
 import {
@@ -11,19 +11,19 @@ import {
   FormHelperText,
   makeStyles,
 } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { notificationActions } from "../store/notificationSlice";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "90%",
-    minWidth: 300,
-    maxWidth: 600,
+    width: "100%",
     margin: "0 auto",
     padding: "10px 0",
-    position: 'relative'
+    position: "relative",
   },
   title: {
     marginBottom: 20,
@@ -33,23 +33,36 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-
+    width: "100%",
   },
   field: {
     marginBottom: 10,
-    width: '40vw',
+    width: "60%",
     minWidth: 280,
-    maxWidth: 500
+    maxWidth: 600,
   },
 }));
 
-const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, redirect, auth }) => {
+const useCustomForm = ({
+  inputs,
+  title,
+  buttonText,
+  helperText,
+  url,
+  method,
+  redirect,
+  onSuccessText,
+  onErrorText,
+  auth,
+}) => {
   const styles = useStyles();
 
   const history = useHistory();
 
   const [responseData, setResponseData] = useState();
   const [error, setError] = useState();
+
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
 
   const {
@@ -59,21 +72,46 @@ const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, red
   } = useForm();
 
   const onSubmitHandler = (data) => {
-      console.log(data);
+    console.log(data);
     axios({
       url: `${process.env.REACT_APP_BACKEND}/${url}`,
       method,
       data,
-      headers: auth && { 'Authorization': `Bearer ${token}` },
+      headers: auth && { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
         if (response.status.ok) {
-          setResponseData(response.data);
+          onSuccessText &&
+            dispatch(
+              notificationActions.openNotification({
+                message: response.message || onSuccessText,
+                severity: "success",
+              })
+            );
+          if (redirect) {
+            history.push(redirect);
+          } else {
+            setResponseData(response.data);
+          }
         } else {
+          onErrorText &&
+            dispatch(
+              notificationActions.openNotification({
+                message: response.error.message || onErrorText,
+                severity: "error",
+              })
+            );
           setError(response.error.message);
         }
       })
       .catch((error) => {
+        onErrorText &&
+          dispatch(
+            notificationActions.openNotification({
+              message: error.message || onErrorText,
+              severity: "error",
+            })
+          );
         setError(error.message);
       });
   };
@@ -97,8 +135,18 @@ const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, red
               control={control}
               defaultValue=""
               rules={{
-                minLength: ((formField.type === "text" || formField.type === 'password' || formField.type === 'email') && formField.minLength) || null,
-                maxLength: ((formField.type === "text" || formField.type === 'password' || formField.type === 'email') && formField.maxLength) || null,
+                minLength:
+                  ((formField.type === "text" ||
+                    formField.type === "password" ||
+                    formField.type === "email") &&
+                    formField.minLength) ||
+                  null,
+                maxLength:
+                  ((formField.type === "text" ||
+                    formField.type === "password" ||
+                    formField.type === "email") &&
+                    formField.maxLength) ||
+                  null,
                 min: (formField.type === "number" && formField.min) || null,
                 max: (formField.type === "number" && formField.max) || null,
               }}
@@ -116,8 +164,8 @@ const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, red
                     (errors[formField.label]?.type === "min" &&
                       `Minimum number is ${formField.min}.`) ||
                     (errors[formField.label]?.type === "max" &&
-                      `Maximum number is ${formField.max}.`)
-                    || ''
+                      `Maximum number is ${formField.max}.`) ||
+                    ""
                   }
                   type={formField.type}
                   multiline={!!formField.multiline}
@@ -140,7 +188,7 @@ const useCustomForm = ({ inputs, title, buttonText, helperText, url, method, red
           ))}
 
           <Button type="submit" variant="contained" style={{ outline: "none" }}>
-            {buttonText || 'SUBMIT'}
+            {buttonText || "SUBMIT"}
           </Button>
           {helperText && <FormHelperText>{helperText}</FormHelperText>}
         </form>

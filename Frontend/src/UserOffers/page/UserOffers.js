@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Menu, MenuItem, Typography } from "@material-ui/core";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import OffersList from "../../shared/offers/OffersList";
@@ -22,7 +22,7 @@ const DUMMY_DATA = [
     description: "świeże warzywa i owoce",
     price: 30.25,
     discount: 5,
-    author: "u12345",
+    author: "u123456",
   },
   {
     id: "3",
@@ -38,7 +38,7 @@ const DUMMY_DATA = [
     description: "świeże warzywa i owoce",
     price: 30.25,
     discount: 5,
-    author: "u12345",
+    author: "u123456",
   },
   {
     id: "5",
@@ -62,6 +62,7 @@ const UserOffers = (props) => {
   const userId = useSelector((state) => state.auth.userId);
   const offers = useSelector((state) => state.cart.offers);
 
+  const history = useHistory();
   const params = useParams();
 
   const { data, error, loading, sendRequest } = useHttp();
@@ -92,7 +93,7 @@ const UserOffers = (props) => {
 
   const removeFromCartHandler = () => {};
 
-  const goToDetailsHandler = () => {};
+  const goToDetailsHandler = (id) => history.push(`/offers/${id}/details`);
 
   const removeOffertHandler = () => {};
 
@@ -127,9 +128,11 @@ const UserOffers = (props) => {
       >
         {!isAuthor &&
           ((isInCart && (
-            <MenuItem onClick={() => {}}>Usuń z koszyka</MenuItem>
-          )) || <MenuItem onClick={() => {}}>Dodaj do koszyka</MenuItem>)}
-        <MenuItem onClick={() => {}}>Zobacz szczegóły</MenuItem>
+            <MenuItem onClick={removeFromCartHandler}>Usuń z koszyka</MenuItem>
+          )) || (
+            <MenuItem onClick={addToCartHandler}>Dodaj do koszyka</MenuItem>
+          ))}
+        <MenuItem onClick={goToDetailsHandler}>Zobacz szczegóły</MenuItem>
         {isAuthor && (
           <>
             <MenuItem onClick={() => {}}>Edytuj</MenuItem>

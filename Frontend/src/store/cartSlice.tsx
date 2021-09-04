@@ -14,12 +14,6 @@ type Offer = {
   description: string;
   price: number;
   discount: number;
-  category: string;
-  offerrorGroup: string;
-  area: string;
-  option: string;
-  reason: string;
-  isUrgent: boolean;
   products: Product[];
 };
 
@@ -60,12 +54,6 @@ const DUMMY_OFFERS = [
     description: "Opis oferty",
     price: 50.25,
     discount: 10,
-    category: "kategoria",
-    offerrorGroup: "grupa oferująca",
-    area: "obszar",
-    option: "opcja",
-    reason: "powód",
-    isUrgent: true,
     products: DUMMY_PRODUCTS,
   },
 ];
@@ -83,7 +71,7 @@ const cartSlice = createSlice({
       state.offers.push(action.payload);
     },
     removeFromCart(state: CartSlice, action) {
-      state.offers.filter(offer => offer.id !== action.payload);
+      state.offers.filter((offer) => offer.id !== action.payload);
     },
   },
 });
